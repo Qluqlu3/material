@@ -8,6 +8,7 @@ export default function Home() {
     container: {
       display: 'flex',
       flexWrap: 'wrap',
+      flexDirection: 'column',
     },
     textField: {
       marginLeft: theme.spacing(1),
@@ -19,28 +20,26 @@ export default function Home() {
     },
   }));
 
-  function SimpleForm() {
-    const classes = useStyles();
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const classes = useStyles();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log('Name:', name);
-      console.log('Email:', email);
-      console.log('Password:', password);
-    };
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log('Name:', name);
+    console.log('Email:', email);
+    console.log('Password:', password);
+  };
 
-    return (
-      <form className={classes.container} onSubmit={handleSubmit}>
-        <TextField label='Name' className={classes.textField} value={name} onChange={(e) => setName(e.target.value)} margin='normal' />
-        <TextField label='Email' className={classes.textField} value={email} onChange={(e) => setEmail(e.target.value)} margin='normal' />
-        <TextField label='Password' type='password' className={classes.textField} value={password} onChange={(e) => setPassword(e.target.value)} margin='normal' />
-        <Button type='submit' variant='contained' color='primary' className={classes.button}>
-          Submit
-        </Button>
-      </form>
-    );
-  }
+  return (
+    <form className={classes.container} onSubmit={handleSubmit}>
+      <TextField label='Name' className={classes.textField} value={name} onChange={(e) => setName(e.target.value)} margin='normal' />
+      <TextField label='Email' className={classes.textField} value={email} onChange={(e) => setEmail(e.target.value)} margin='normal' />
+      <TextField label='Password' type='password' className={classes.textField} value={password} onChange={(e) => setPassword(e.target.value)} margin='normal' />
+      <Button type='submit' variant='contained' color='primary' className={classes.button}>
+        Submit
+      </Button>
+    </form>
+  );
 }
